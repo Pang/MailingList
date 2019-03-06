@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailingList.API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailingList.API.Controllers
@@ -14,20 +15,21 @@ namespace MailingList.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return null;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return null;
         }
 
         // POST api/values
         [HttpPost("register")]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> SignUp(MemberForSignup memberForSignup)
         {
+
         }
 
         // PUT api/values/5

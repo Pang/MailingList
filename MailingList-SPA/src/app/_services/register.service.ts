@@ -9,8 +9,9 @@ export class RegisterService {
   baseUrl = 'http://localhost:5000';
   member: any[];
 
-  register(){
-    return this.http.
+  constructor(private http: HttpClient) { }
+
+  register() {
+    return this.http.post(this.baseUrl)
   }
-  constructor() { }
 }
