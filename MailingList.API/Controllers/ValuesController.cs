@@ -25,7 +25,7 @@ namespace MailingList.API.Controllers
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("register")]
         public void Post([FromBody] string value)
         {
         }
