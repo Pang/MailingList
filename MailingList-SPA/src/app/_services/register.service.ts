@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Member } from '../_models/Member';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  baseUrl = 'http://localhost:5000';
-  member: any[];
+  baseUrl = 'http://localhost:5000/api/users/';
 
   constructor(private http: HttpClient) { }
 
-  register() {
-    return this.http.post(this.baseUrl)
+  signUp(member: Member) {
+    return this.http.post<Member>(this.baseUrl + 'register', member);
   }
 }

@@ -30,6 +30,7 @@ namespace MailingList.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<ISignupRepository, SignupRepository>();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,10 @@ namespace MailingList.API
                 app.UseHsts();
             }
 
+            app.UseCors(x => x.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+            );
             //app.UseHttpsRedirection();
             app.UseMvc();
         }

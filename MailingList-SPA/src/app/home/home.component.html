@@ -1,9 +1,10 @@
 <h1>Sign up for our mailing list!</h1>
 
-<form #memberDetails="ngForm">
-  <label>Name:</label><br>
-  <input type="text"><br>
-  <label>Email:</label><br>
-  <input type="email"><br>
+<form #memberDetails="ngForm" (ngSubmit)="signUp()">
+
+  <input [(ngModel)]="userDetails.name" name="name" type="text" placeholder="Full Name" required><br>
+
+  <input [(ngModel)]="userDetails.email" name="email" type="email" placeholder="Email" required><br>
+
   <button type="submit">Submit</button>
 </form>
