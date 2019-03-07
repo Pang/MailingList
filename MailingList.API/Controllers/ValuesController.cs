@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailingList.API.Data;
 using MailingList.API.Dtos;
+using MailingList.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailingList.API.Controllers
@@ -11,6 +13,11 @@ namespace MailingList.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ISignupRepository _repo;
+        public ValuesController(ISignupRepository repo)
+        {
+            _repo = repo;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -27,9 +34,18 @@ namespace MailingList.API.Controllers
 
         // POST api/values
         [HttpPost("register")]
-        public async Task<IActionResult> SignUp(MemberForSignup memberForSignup)
+        public async Task<IActionResult> Signup(MemberForSignupDto memberForSignupDto)
         {
+            memberForSignupDto.Email = memberForSignupDto.Email.ToLower();
 
+            var newMember = new Member
+            {
+                Email = memberForSignupDto.Email,
+                Name = memberForSignupDto.Name
+            };
+            
+            await _repo.Signup(newMember);
+            return StatusCode(201);
         }
 
         // PUT api/values/5

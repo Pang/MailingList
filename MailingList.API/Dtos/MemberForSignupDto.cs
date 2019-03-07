@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MailingList.API.Dtos
 {
-    public class MemberForSignup
+    public class MemberForSignupDto
     {
         [Required]
         public string Name { get; set; }
