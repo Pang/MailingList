@@ -11,12 +11,12 @@ namespace MailingList.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly ISignupRepository _repo;
-        public ValuesController(ISignupRepository repo)
+        private readonly ISignupRepository _signupRepo;
+        public UsersController(ISignupRepository repo)
         {
-            _repo = repo;
+            _signupRepo = repo;
         }
         // GET api/values
         [HttpGet]
@@ -38,13 +38,16 @@ namespace MailingList.API.Controllers
         {
             memberForSignupDto.Email = memberForSignupDto.Email.ToLower();
 
+            if(await _signupRepo.EmailExists(memberForSignupDto.Email))
+                return BadRequest("This email is already subscribed");
+
             var newMember = new Member
             {
                 Email = memberForSignupDto.Email,
                 Name = memberForSignupDto.Name
             };
-            
-            await _repo.Signup(newMember);
+
+            await _signupRepo.Signup(newMember);
             return StatusCode(201);
         }
 
