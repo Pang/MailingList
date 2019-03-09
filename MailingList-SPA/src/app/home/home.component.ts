@@ -8,13 +8,18 @@ import { RegisterService } from '../_services/register.service';
 })
 export class HomeComponent implements OnInit {
   userDetails: any = {};
+  error = false;
+  success = false;
 
   constructor(private registerService: RegisterService) { }
 
   signUp() {
+    this.success = false;
+    this.error = false;
     this.registerService.signUp(this.userDetails).subscribe(
-      x => console.log(`Success! ${x} was subscribed!`),
-      err => console.log(`Error occured: ${err}`)
+      x => this.success = true,
+      err => this.error = true,
+
     );
   }
 
