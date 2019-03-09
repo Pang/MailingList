@@ -1,10 +1,10 @@
 <div>
   <form #memberDetails="ngForm" (ngSubmit)="signUp()">
-    <h1>Sign up for our mailing list!</h1>
-
-    <input [(ngModel)]="userDetails.name" name="name" type="text" placeholder="Full Name" required>
-
-    <input [(ngModel)]="userDetails.email" name="email" type="email" placeholder="Email" required>
+    <h1>Sign Up!</h1>
+    <label name="name">Name</label>
+    <input [(ngModel)]="userDetails.name" name="name" type="text" required>
+    <label name="Email">Email</label>
+    <input [(ngModel)]="userDetails.email" name="email" type="email" required>
 
     <button type="submit">Submit</button>
   </form>
