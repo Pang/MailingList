@@ -46,11 +46,11 @@ namespace MailingList.API
                 app.UseHsts();
             }
 
-            app.UseCors(x => x.AllowAnyOrigin()
-                            .AllowAnyMethod()
+            app.UseCors(x => x.WithOrigins("http://localhost:4200")
+                            .WithMethods("POST")
                             .AllowAnyHeader()
             );
-            //app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

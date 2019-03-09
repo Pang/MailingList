@@ -35,7 +35,7 @@ namespace MailingList.API.Controllers
         // POST api/values
         [HttpPost("register")]
         public async Task<IActionResult> Signup(MemberForSignupDto memberForSignupDto)
-        {
+        { 
             memberForSignupDto.Email = memberForSignupDto.Email.ToLower();
 
             if(await _signupRepo.EmailExists(memberForSignupDto.Email))
