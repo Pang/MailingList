@@ -9,6 +9,7 @@ import { RegisterService } from '../_services/register.service';
 export class HomeComponent implements OnInit {
   userDetails: any = {};
   error = false;
+  errorMsg: string;
   success = false;
 
   constructor(private registerService: RegisterService) { }
@@ -18,8 +19,14 @@ export class HomeComponent implements OnInit {
     this.error = false;
     this.registerService.signUp(this.userDetails).subscribe(
       x => this.success = true,
-      err => this.error = true,
+      err => this.errorMethod(err),
     );
+  }
+
+  errorMethod(error: string){
+    console.log(error);
+    this.errorMsg = error;
+    this.error = true;
   }
 
   ngOnInit() {

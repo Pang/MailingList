@@ -7,6 +7,7 @@ namespace MailingList.API.Dtos
         [Required]
         public string Name { get; set; }
         [Required]
+        // [StringLength(50, MinimumLength = 4, ErrorMessage = "Please enter a valid email")]
         public string Email { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace MailingList.API
                 // app.UseHsts();
             }
 
-            app.UseCors(x => x.AllowAnyHeader()
+            app.UseCors(x => x.AllowAnyOrigin()
                             .WithMethods("POST")
                             .AllowAnyHeader()
             );
