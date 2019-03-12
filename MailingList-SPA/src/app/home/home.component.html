@@ -1,6 +1,6 @@
 <div>
   <form #memberDetails="ngForm" (ngSubmit)="signUp()">
-    <h1>Sign Up!</h1>
+    <h1>Sign Up! <i class="fas fa-envelope"></i></h1> 
     <label name="name">Name</label>
     <input [(ngModel)]="userDetails.name" name="name" type="text" required>
     <label name="Email">Email</label>
