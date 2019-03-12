@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  errorMethod(error: string){
+  errorMethod(error: string) {
     console.log(error);
     this.errorMsg = error;
     this.error = true;

@@ -46,7 +46,6 @@ namespace MailingList.API.Controllers
 
             if(await _signupRepo.EmailExists(memberForSignupDto.Email))
                 throw new Exception("That email has already registered");
-                //return BadRequest("This email is already subscribed");
 
             var newMember = new Member
             {
