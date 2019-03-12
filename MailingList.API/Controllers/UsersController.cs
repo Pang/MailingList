@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using MailingList.API.Data;
 using MailingList.API.Dtos;
 using MailingList.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailingList.API.Controllers
 {
@@ -14,23 +16,27 @@ namespace MailingList.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ISignupRepository _signupRepo;
-        public UsersController(ISignupRepository repo)
+        private readonly DataContext _context;
+        public UsersController(DataContext context, ISignupRepository repo)
         {
+            _context = context;
             _signupRepo = repo;
         }
-        // GET api/values
+        // GET api/users
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return null;
-        }
+        // public async Task<IActionResult> GetAllUsers()
+        // {
+        //     var users = await _context.Members.ToListAsync();
+        //     return Ok(users);
+        // }
 
-        // GET api/values/5
+        // GET api/users/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return null;
-        }
+        // public async Task<IActionResult> GetUser(int id)
+        // {
+        //     var user = await _context.Members.FirstOrDefaultAsync(x => x.Id == id);
+        //     return Ok(user);
+        // }
 
         // POST api/values
         [HttpPost("register")]
@@ -39,7 +45,8 @@ namespace MailingList.API.Controllers
             memberForSignupDto.Email = memberForSignupDto.Email.ToLower();
 
             if(await _signupRepo.EmailExists(memberForSignupDto.Email))
-                return BadRequest("This email is already subscribed");
+                throw new Exception("This email has already registered");
+                //return BadRequest("This email is already subscribed");
 
             var newMember = new Member
             {

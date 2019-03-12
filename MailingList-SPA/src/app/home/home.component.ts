@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
     this.registerService.signUp(this.userDetails).subscribe(
       x => this.success = true,
       err => this.error = true,
-
     );
   }
 
